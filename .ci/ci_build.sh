@@ -119,7 +119,7 @@ elif [[ "$CI_NAME" == 'linux' ]]; then
 			cat PKGBUILD
 			chmod -R a+rw ${CI_BUILD_DIR}/.ccache
 		else
-			executeCommand="cd build && ( cmake ${cachecommand} -DPLATFORM=${PLATFORM} -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DDEBIAN_NAME_TAG=${DOCKER_TAG} -DUSE_STANDARD_INSTALLER_NAME=${USE_STANDARD_INSTALLER_NAME} ../ || exit 2 )"
+			executeCommand="cd build && ( cmake ${cachecommand} -DPLATFORM=${PLATFORM} -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DENABLE_FRAMEBUFFER=OFF -DENABLE_PIPEWIRE=OFF -DENABLE_X11=OFF -DENABLE_V4L2=OFF -DDEBIAN_NAME_TAG=${DOCKER_TAG} -DUSE_STANDARD_INSTALLER_NAME=${USE_STANDARD_INSTALLER_NAME} ../ || exit 2 )"
 			executeCommand+=" && ( make -j $(nproc) package || exit 3 )"
 		fi
 
